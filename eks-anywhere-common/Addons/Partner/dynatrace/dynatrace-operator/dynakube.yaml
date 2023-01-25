@@ -1,17 +1,4 @@
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dynatrace-variables
-  namespace: flux-system
-data:
-  # api url for dynatrace environment 
-  apiurl: "https://fjy55252.sprint.dynatracelabs.com/api"
-  # name of secret containing tokens
-  dynatrace-secret-name: "dt-secret"
-  # name of cluster to be listed in Dynatrace
-  cluster-name: "test-cluster-1"
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
