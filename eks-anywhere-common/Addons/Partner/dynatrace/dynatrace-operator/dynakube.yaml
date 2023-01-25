@@ -14,9 +14,16 @@ spec:
   interval: 10m0s
   prune: true
   postBuild:
-    substituteFrom:
-    - kind: ConfigMap
-      name: dynatrace-variables # Provides apiurl, dynatrace-secret-name, cluster-name
+    substitute:
+      # api url for dynatrace environment 
+      apiurl: "https://fjy55252.sprint.dynatracelabs.com/api"
+      # name of secret containing tokens
+      dynatrace-secret-name: "dt-secret"
+      # name of cluster to be listed in Dynatrace
+      cluster-name: "test-cluster-1"
+    # substituteFrom:
+    # - kind: ConfigMap
+    #   name: dynatrace-variables # Provides apiurl, dynatrace-secret-name, cluster-name
 ---
 apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
