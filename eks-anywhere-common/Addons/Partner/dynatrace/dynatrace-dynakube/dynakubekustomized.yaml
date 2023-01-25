@@ -5,9 +5,9 @@ metadata:
   name: dynatrace-operator
   namespace: dynatrace
 spec:
-  # dependsOn:
-  #   - name: flux-system
-  path: "./eks-anywhere-common/Addons/Partner/dynatrace/dynatrace-operator"
+  dependsOn:
+    - name: addons-partner
+  path: "./eks-anywhere-common/Addons/Partner/dynatrace/dynatrace-dynakube"
   sourceRef:
     kind: GitRepository
     name: addons
