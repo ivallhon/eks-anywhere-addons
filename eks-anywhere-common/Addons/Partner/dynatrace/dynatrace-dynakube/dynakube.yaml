@@ -21,7 +21,7 @@ spec:
       # name of secret containing tokens
       dynatracesecretname: "dt-secret"
       # name of cluster to be listed in Dynatrace
-      clusternamedt: "test-cluster-1"
+      clusternamedt: "testcluster1"
     # substituteFrom:
     # - kind: ConfigMap
     #   name: dynatrace-variables # Provides apiurl, dynatracesecretname, clusternamedt
