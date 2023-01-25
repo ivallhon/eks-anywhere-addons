@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: DynaKube
+  namespace: dynatrace
+spec:
+  dependsOn:
+    - name: addons-partner
+  path: "./eks-anywhere-common/Addons/Partner/dynatrace/dynatrace-dynakube"
+  sourceRef:
+    kind: GitRepository
+    name: addons
+    namespace: flux-system
+  interval: 5m0s
+  prune: true
+  postBuild:
+    substitute:
+      # api url for dynatrace environment 
+      apiurl: "https://fjy55252.sprint.dynatracelabs.com/api"
+      # name of secret containing tokens
+      dynatracesecretname: "dt-secret"
+      # name of cluster to be listed in Dynatrace
+      clusternamedt: "test-cluster-1"
+    # substituteFrom:
+    # - kind: ConfigMap
+    #   name: dynatrace-variables # Provides apiurl, dynatracesecretname, clusternamedt
