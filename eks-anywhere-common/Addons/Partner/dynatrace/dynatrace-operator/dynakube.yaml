@@ -1,0 +1,57 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: dynatrace-operator
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: flux-system
+  path: "./eks-anywhere-common/Addons/Partner/dynatrace/dynatrace-operator"
+  sourceRef:
+    kind: GitRepository
+    name: addons
+  interval: 10m0s
+  prune: true
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: dynatrace-variables # Provides apiurl, dynatrace-secret-name, cluster-name
+---
+apiVersion: dynatrace.com/v1beta1
+kind: DynaKube
+metadata:
+  name: ${cluster-name}
+  namespace: dynatrace
+  annotations:
+    feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
+spec:
+  apiUrl: ${apiurl}
+  tokens: ${dynatrace-secret-name}
+  skipCertCheck: false
+  oneAgent:
+    classicFullStack:
+      image:
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+      env:
+        - name: ONEAGENT_ENABLE_VOLUME_STORAGE
+          value: "true"
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
+      - dynatrace-api
+    image: ""
+    resources:
+      requests:
+        cpu: 50m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1.5Gi
