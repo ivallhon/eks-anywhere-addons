@@ -12,7 +12,7 @@ spec:
     kind: GitRepository
     name: addons
     namespace: flux-system
-  interval: 10m0s
+  interval: 5m0s
   prune: true
   postBuild:
     substitute:
