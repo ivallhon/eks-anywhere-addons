@@ -28,13 +28,13 @@ spec:
 apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
-  name: ${cluster-name}
+  name: "${cluster-name}""
   namespace: dynatrace
   annotations:
     feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
 spec:
-  apiUrl: ${apiurl}
-  tokens: ${dynatrace-secret-name}
+  apiUrl: "${apiurl}""
+  tokens: "${dynatrace-secret-name}""
   skipCertCheck: false
   oneAgent:
     classicFullStack:
