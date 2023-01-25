@@ -10,4 +10,4 @@ data:
   # name of secret containing tokens
   dynatracesecretname: "dt-secret"
   # name of cluster to be listed in Dynatrace
-  clusternamedt: "testcluster1"
+  dynakubename: "testcluster1"

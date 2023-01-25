@@ -21,7 +21,7 @@ spec:
       # name of secret containing tokens
       dynatracesecretname: "dt-secret"
       # name of cluster to be listed in Dynatrace
-      clusternamedt: "testcluster1"
+      dynakubename: "testcluster1"
     # substituteFrom:
     # - kind: ConfigMap
     #   name: dynatrace-variables # Provides apiurl, dynatracesecretname, clusternamedt
@@ -30,7 +30,7 @@ apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
   # name: "test-cluster-no-substitution"
-  name: ${clusternamedt}
+  name: ${dynakubename}
   namespace: dynatrace
   annotations:
     feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
