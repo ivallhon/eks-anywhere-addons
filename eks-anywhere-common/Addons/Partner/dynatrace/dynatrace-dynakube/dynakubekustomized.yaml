@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: dynatrace-operator
+  name: DynaKube
   namespace: dynatrace
 spec:
   dependsOn:
@@ -30,13 +30,13 @@ apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
   # name: "test-cluster-no-substitution"
-  name: "${clusternamedt}"
+  name: ${clusternamedt}
   namespace: dynatrace
   annotations:
     feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
 spec:
-  apiUrl: "${apiurl}"
-  tokens: "${dynatracesecretname}"
+  apiUrl: ${apiurl}
+  tokens: ${dynatracesecretname}
   # apiUrl: "https://fjy55252.sprint.dynatracelabs.com/api"
   # tokens: "dt-secret"  
   skipCertCheck: false
