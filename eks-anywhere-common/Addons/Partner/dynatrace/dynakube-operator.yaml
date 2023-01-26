@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: dynatraxce-operator
+    - name: dynatrace-operator
   path: "./eks-anywhere-common/Addons/Partner/dynatrace/dynatrace-dynakube"
   sourceRef:
     kind: GitRepository
